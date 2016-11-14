@@ -58,10 +58,10 @@ wsock32.lib;ws2_32.lib;dsound.lib;%(AdditionalDependencies)
 ### 构建 pjproject C# 项目
 1. 新建 C# 类库项目 `pj` 
 2. 删除项目源文件 `pj.cs`
-3. 将 csharp/*.cs 复制到项目目录，然后加入到项目
+3. 将 `pjproject/pjsip-apps/src/swig/csharp/*.cs` 加入到项目
 4. 编译
 
-某些版本的swig产生的cs文件有错， 一些`char`常量没有被单引号包括，故编译错误——需要手动修复！
+某些版本的swig产生的cs文件有错，文件`pjmedia_format_iud.cs`和`pjmedia_event_type.cs`中`Char`常量没有被单引号包括，故编译错误——需要手动修复！
 
 ## API 手册
 目前，[pjsip]官方提供的[swig]方案是针对`Java`和`Python`的，但是并为提供专门针对这些语言的API手册（`Python`版本提供了一个早期非[swig]技术的API手册）。
