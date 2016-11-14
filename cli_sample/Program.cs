@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 using pj;
 
 namespace cli_sample
@@ -15,6 +14,7 @@ namespace cli_sample
         {
             var ep = new Endpoint();
             ep.libCreate();
+
             var ep_cfg = new EpConfig();
             ep.libInit(ep_cfg);
 
@@ -28,7 +28,7 @@ namespace cli_sample
             acc_cfg.regConfig.registrarUri = "sip:192.168.20.249";
             acc_cfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", "*", "1005", 0, "123456"));
 
-            var acc = new Account();
+            var acc = new MyAccount();
             acc.create(acc_cfg);
 
             while (true)
@@ -41,6 +41,21 @@ namespace cli_sample
             }
 
             ep.libDestroy();
+        }
+
+        class MyAccount : Account
+        {
+            public override void onRegState(OnRegStateParam prm)
+            {
+                if (this.getInfo().regIsActive)
+                {
+                    Console.WriteLine(String.Format("\n\n Registered: {0} {1} \n\n", (uint)prm.code, prm.reason));
+                }
+                else
+                {
+                    Console.WriteLine(String.Format("\n\n Unregistered: {0} {1} \n\n", (uint)prm.code, prm.reason));
+                }
+            }
         }
     }
 }
