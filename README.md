@@ -17,11 +17,14 @@ cd pjsip\include
 swig -csharp -namespace pj -c++ -outdir ..\..\pjsip-apps\src\swig\csharp\ ..\..\pjsip-apps\src\swig\pjsua2.i
 ```
 
-[swig] 输出的wrapper文件是：
+[swig] 输出的wrapper和类库源文件是：
 ```
-pjsua2_wrap.h
-pjsua2_wrap.cxx
-csharp/*.cs
+pjsip-apps\src\swig\pjsua2_wrap.h
+pjsip-apps\src\swig\pjsua2_wrap.cxx
+```
+
+```
+pjsip-apps\src\swig\csharp\*.cs
 ```
 
 ## 构建
@@ -30,9 +33,9 @@ csharp/*.cs
 ### VC++ Wrapper 项目
 
 1. 将[pjsip]的项目目录改名为 `pjproject` (去掉版本号)，复制到解决方案目录。
-2. 在解决方案中新建 **Win32 DLL** (**不是**通用DLL) 项目 `pjsua2`。
-3. 将文件`..\..\pjproject\pjsip-apps\src\swig\pjsua2_wrap.h`复制到此项目目录，并加入到头文件。
-4. 将文件`..\..\pjproject\pjsip-apps\src\swig\pjsua2_wrap.cxx`的内容复制到改项目中 `pjsua2.cpp` 的结尾空白行中。
+2. 在解决方案中新建名为 `pjsua2` 的 `Win32` 项目，类型是 `DLL`。
+3. 将文件`..\..\pjproject\pjsip-apps\src\swig\pjsua2_wrap.h` 加入到该项目的头文件。
+4. 将文件`..\..\pjproject\pjsip-apps\src\swig\pjsua2_wrap.cxx` 加入到该项目的源文件。
 4. 按照[pjsip]的开发文档，视改项目作普通的使用[pjsip]库的C++项目，进行配置，并编译。
 
 ### 构建 pjproject C# 项目
