@@ -33,10 +33,27 @@ pjsip-apps\src\swig\csharp\*.cs
 ### VC++ Wrapper 项目
 
 1. 将[pjsip]的项目目录改名为 `pjproject` (去掉版本号)，复制到解决方案目录。
-2. 在解决方案中新建名为 `pjsua2` 的 `Win32` 项目，类型是 `DLL`。
+2. 在解决方案中新建名为 `pjsua2` 的 `Win32` 项目，类型是 `DLL`，**不要**选择预编译头和SDL安全检查选项。
 3. 将文件`..\..\pjproject\pjsip-apps\src\swig\pjsua2_wrap.h` 加入到该项目的头文件。
 4. 将文件`..\..\pjproject\pjsip-apps\src\swig\pjsua2_wrap.cxx` 加入到该项目的源文件。
 4. 按照[pjsip]的开发文档，视改项目作普通的使用[pjsip]库的C++项目，进行配置，并编译。
+
+项目的include目录是：
+```
+$(ProjectDir)../pjproject/pjlib/include;$(ProjectDir)../pjproject/pjlib-util/include;$(ProjectDir)../pjproject/pjnath/include;$(ProjectDir)../pjproject/pjmedia/include;$(ProjectDir)../pjproject/pjsip/include;%(AdditionalIncludeDirectories)
+```
+
+库搜索目录是：
+```
+$(ProjectDir)../pjproject/lib;%(AdditionalLibraryDirectories)
+```
+
+额外依赖依赖库有
+```
+wsock32.lib;ws2_32.lib;dsound.lib;%(AdditionalDependencies)
+```
+
+如果出现 `error LNK2038` ，注意在项目属性中 “配置属性”/“C/C++”/“代码生成”/“运行库” 的值设置成与 [pjsip] 项目配置一致。
 
 ### 构建 pjproject C# 项目
 1. 新建 C# 类库项目 `pj` 
