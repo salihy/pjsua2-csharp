@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using pj;
 
 namespace cli_sample
@@ -16,6 +11,14 @@ namespace cli_sample
             ep.libCreate();
 
             var ep_cfg = new EpConfig();
+            ep_cfg.uaConfig.userAgent = String.Format(
+                "pjsip-{0} {1}-{2}.{3} dotNET-{4}",
+                Endpoint.instance().libVersion().full,
+                Environment.OSVersion.Platform.ToString(),
+                Environment.OSVersion.Version.Major,
+                Environment.OSVersion.Version.Minor,
+                Environment.Version.ToString()
+            );
             ep.libInit(ep_cfg);
 
             var trans_cfg = new TransportConfig();
