@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>pjsua2-charp</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <summary>PJSIP csharp interop project</summary>
+    <authors>pjsip.org</authors>
+    <owners>pjsip.org</owners>
+    <licenseUrl>http://www.pjsip.org/licensing.htm</licenseUrl>
+    <projectUrl>http://www.pjsip.org/</projectUrl>
+    <iconUrl>http://www.pjsip.org/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>PJSIP is a free and open source multimedia communication library written in C language implementing standard based protocols such as SIP, SDP, RTP, STUN, TURN, and ICE. It combines signaling protocol (SIP) with rich multimedia framework and NAT traversal functionality into high level API that is portable and suitable for almost any type of systems ranging from desktops, embedded systems, to mobile handsets.</description>
+    <releaseNotes>This release of the package is based on the swig wrapper of pjproject.</releaseNotes>
+    <copyright>Copyright reserved by Teluu Ltd.</copyright>
+    <tags>sip pj pjsip pjproject</tags>
+  </metadata>
+</package>
