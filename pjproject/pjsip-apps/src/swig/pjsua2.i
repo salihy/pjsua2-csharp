@@ -26,6 +26,14 @@ using namespace pj;
   }
 #endif
 
+// Allow C++ exceptions to be handled in CSharp
+#ifdef SWIGCSHARP
+  %typemap(throws, canthrow=1) pj::Error {
+  SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpApplicationException, $1.what(), NULL);
+  return $null;
+}
+#endif
+
 // Allow C++ exceptions to be handled in Java
 #ifdef SWIGJAVA
   %typemap(throws, throws="java.lang.Exception") pj::Error {
@@ -55,7 +63,6 @@ using namespace pj;
 
 %}
 #endif
-
 
 // Constants from PJSIP libraries
 %include "symbols.i"
