@@ -188,6 +188,51 @@ class pjsua2PINVOKE {
   }
 
 
+    class PjRumtimeExceptionHelper {
+      // C# delegate for the C/C++ pjExceptionCallback
+      public delegate void PjExceptionDelegate(int status, string title, string reason, string message);
+      static PjExceptionDelegate pjExceptionDelegate = new PjExceptionDelegate(SetPendingPjException);
+
+      [DllImport("pjsua2", EntryPoint="PjExceptionRegisterCallback")]
+      public static extern void PjExceptionRegisterCallback(PjExceptionDelegate customCallback);
+
+      static void SetPendingPjException(int status, string title, string reason, string message) {
+        SWIGPendingException.Set(new PjRumtimeException(state, title, reason, message));
+      }
+
+      static CustomExceptionHelper() {
+        PjExceptionRegisterCallback(pjExceptionDelegate);
+      }
+    }
+    static PjRumtimeExceptionHelper pjExceptionHelper = new PjRumtimeExceptionHelper();
+  
+
+    class PjRumtimeException : System.ApplicationException {
+      public PjRumtimeException(int status, string title, string reason, string message) 
+        : base(message) {
+        _status = status;
+        _title = title;
+        _reaseon = reaseon;
+      }
+      private int _status;
+      private string _title;
+      private string _reason;
+      private string _info;
+      public int status {
+        get {return _status;}
+      }
+      public string title {
+        get {return _title;}
+      }
+      public string reason {
+        get {return _reason;}
+      }
+      public string info {
+        get {return _info;}
+      }
+    }
+  
+
   [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="CSharp_pj_pj_qos_params_flags_set")]
   public static extern void pj_qos_params_flags_set(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
 

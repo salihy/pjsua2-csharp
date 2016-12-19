@@ -28,10 +28,76 @@ using namespace pj;
 
 // Allow C++ exceptions to be handled in CSharp
 #ifdef SWIGCSHARP
+  %insert(runtime) %{
+    // Code to handle throwing of C# CustomApplicationException from C/C++ code.
+    // The equivalent delegate to the callback, CSharpExceptionCallback_t, is PjExceptionDelegate
+    // and the equivalent pjExceptionCallback instance is pjExceptionDelegate
+    typedef void (SWIGSTDCALL* CSharpExceptionCallback_t)(int state, const char* title, const char* reason, const char* info);
+    CSharpExceptionCallback_t pjExceptionCallback = NULL;
+
+    extern "C" SWIGEXPORT
+    void SWIGSTDCALL PjExceptionRegisterCallback(CSharpExceptionCallback_t customCallback) {
+      pjExceptionCallback = customCallback;
+    }
+  
+    // Note that SWIG detects any method calls named starting with
+    // SWIG_CSharpSetPendingException for warning 845
+    static void SWIG_CSharpSetPendingExceptionPj(int status, const char* title, const char* reason, const char* info) {
+      pjExceptionCallback(status, title, reason, info);
+    }
+  %}
+
+  %pragma(csharp) imclasscode=%{
+    class PjRumtimeExceptionHelper {
+      // C# delegate for the C/C++ pjExceptionCallback
+      public delegate void PjExceptionDelegate(int status, string title, string reason, string message);
+      static PjExceptionDelegate pjExceptionDelegate = new PjExceptionDelegate(SetPendingPjException);
+
+      [DllImport("$dllimport", EntryPoint="PjExceptionRegisterCallback")]
+      public static extern void PjExceptionRegisterCallback(PjExceptionDelegate customCallback);
+
+      static void SetPendingPjException(int status, string title, string reason, string message) {
+        SWIGPendingException.Set(new PjRumtimeException(state, title, reason, message));
+      }
+
+      static CustomExceptionHelper() {
+        PjExceptionRegisterCallback(pjExceptionDelegate);
+      }
+    }
+    static PjRumtimeExceptionHelper pjExceptionHelper = new PjRumtimeExceptionHelper();
+  %}
+
+  %pragma(csharp) imclasscode=%{
+    class PjRumtimeException : System.ApplicationException {
+      public PjRumtimeException(int status, string title, string reason, string message) 
+        : base(message) {
+        _status = status;
+        _title = title;
+        _reaseon = reaseon;
+      }
+      private int _status;
+      private string _title;
+      private string _reason;
+      private string _info;
+      public int status {
+        get {return _status;}
+      }
+      public string title {
+        get {return _title;}
+      }
+      public string reason {
+        get {return _reason;}
+      }
+      public string info {
+        get {return _info;}
+      }
+    }
+  %}
+
   %typemap(throws, canthrow=1) pj::Error {
-  SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpApplicationException, $1.what(), NULL);
-  return $null;
-}
+    SWIG_CSharpSetPendingExceptionPj($1.status, $1.title.c_str(), $1.reason.c_str(), $1.info().c_str());
+    return $null;
+  }
 #endif
 
 // Allow C++ exceptions to be handled in Java
