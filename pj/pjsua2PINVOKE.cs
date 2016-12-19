@@ -197,10 +197,10 @@ class pjsua2PINVOKE {
       public static extern void PjExceptionRegisterCallback(PjExceptionDelegate customCallback);
 
       static void SetPendingPjException(int status, string title, string reason, string message) {
-        SWIGPendingException.Set(new PjRumtimeException(state, title, reason, message));
+        SWIGPendingException.Set(new PjRumtimeException(status, title, reason, message));
       }
 
-      static PjExceptionHelper() {
+      static void PjExceptionHelper() {
         PjExceptionRegisterCallback(pjExceptionDelegate);
       }
     }
@@ -212,7 +212,7 @@ class pjsua2PINVOKE {
         : base(message) {
         _status = status;
         _title = title;
-        _reaseon = reaseon;
+        _reason = reason;
       }
       private int _status;
       private string _title;

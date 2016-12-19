@@ -303,7 +303,7 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_pjsua2(SWIG_CSharpStringH
     // Code to handle throwing of C# CustomApplicationException from C/C++ code.
     // The equivalent delegate to the callback, CSharpExceptionCallback_t, is PjExceptionDelegate
     // and the equivalent pjExceptionCallback instance is pjExceptionDelegate
-    typedef void (SWIGSTDCALL* CSharpExceptionCallback_t)(int state, const char* title, const char* reason, const char* info);
+    typedef void (SWIGSTDCALL* CSharpExceptionCallback_t)(int status, const char* title, const char* reason, const char* info);
     CSharpExceptionCallback_t pjExceptionCallback = NULL;
 
     extern "C" SWIGEXPORT

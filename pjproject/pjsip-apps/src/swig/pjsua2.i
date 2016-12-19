@@ -32,7 +32,7 @@ using namespace pj;
     // Code to handle throwing of C# CustomApplicationException from C/C++ code.
     // The equivalent delegate to the callback, CSharpExceptionCallback_t, is PjExceptionDelegate
     // and the equivalent pjExceptionCallback instance is pjExceptionDelegate
-    typedef void (SWIGSTDCALL* CSharpExceptionCallback_t)(int state, const char* title, const char* reason, const char* info);
+    typedef void (SWIGSTDCALL* CSharpExceptionCallback_t)(int status, const char* title, const char* reason, const char* info);
     CSharpExceptionCallback_t pjExceptionCallback = NULL;
 
     extern "C" SWIGEXPORT
@@ -57,10 +57,10 @@ using namespace pj;
       public static extern void PjExceptionRegisterCallback(PjExceptionDelegate customCallback);
 
       static void SetPendingPjException(int status, string title, string reason, string message) {
-        SWIGPendingException.Set(new PjRumtimeException(state, title, reason, message));
+        SWIGPendingException.Set(new PjRumtimeException(status, title, reason, message));
       }
 
-      static PjExceptionHelper() {
+      static void PjExceptionHelper() {
         PjExceptionRegisterCallback(pjExceptionDelegate);
       }
     }
@@ -73,7 +73,7 @@ using namespace pj;
         : base(message) {
         _status = status;
         _title = title;
-        _reaseon = reaseon;
+        _reason = reason;
       }
       private int _status;
       private string _title;
