@@ -9,7 +9,7 @@
 安装[swig]，并将[swig]的执行命令行所在目录加入到操作系统的`PATH`环境变量。
 
 ## 编译 [pjsip]
-按照官方指导，使用 VisualStudio 编译[pjsip]项目
+按照官方文档，使用`VisualStudio`编译[pjsip]项目
 
 ## 生成 Wrapper 代码
 在命令行中定位到项目目录，然后执行：
@@ -69,11 +69,7 @@ libpjproject-i386-<arch>-<vc-version>-<Debug|Release>.lib;wsock32.lib;ws2_32.lib
 某些版本的swig产生的cs文件有错，文件`pjmedia_format_iud.cs`和`pjmedia_event_type.cs`中`Char`常量没有被单引号包括，故编译错误——需要手动修复！
 
 ## API 手册
-目前，[pjsip]官方提供的[swig]方案仅针对`Java`和`Python`语言，且未提供专门针对这些语言的API手册（`Python`版本提供了一个早期非[swig]技术的API手册）。
-
-不过，由于[swig]的接口定义与`C++`接口高度一致，开发者可参考其`C++`头文件代码以及API手册进行开发，见：
-
-<http://www.pjsip.org/docs/book-latest/html/index.html>
+[pjsip]的[swig]接口定义与`C++`接口高度一致，开发者可参考其`C++`头文件代码以及API手册进行开发，见：<http://www.pjsip.org/docs/book-latest/html/index.html>
 
 [pjsip]: http://www.pjsip.org/
 [swig]: http://http://www.swig.org/
