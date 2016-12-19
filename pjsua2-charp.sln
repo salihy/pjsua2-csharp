@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cli_sample", "cli_sample\cl
 		{5A0FF7DD-4F8B-4714-AC17-644D5CB457BC} = {5A0FF7DD-4F8B-4714-AC17-644D5CB457BC}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "winform_sample", "winform_sample\winform_sample.csproj", "{595C88B8-895B-40A1-B091-194C2F9A5258}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,18 @@ Global
 		{53ED78BC-2F22-4B8C-AA65-12012F569C17}.Release|x64.Build.0 = Release|Any CPU
 		{53ED78BC-2F22-4B8C-AA65-12012F569C17}.Release|x86.ActiveCfg = Release|Any CPU
 		{53ED78BC-2F22-4B8C-AA65-12012F569C17}.Release|x86.Build.0 = Release|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Debug|x64.Build.0 = Debug|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Debug|x86.Build.0 = Debug|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Release|x64.ActiveCfg = Release|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Release|x64.Build.0 = Release|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Release|x86.ActiveCfg = Release|Any CPU
+		{595C88B8-895B-40A1-B091-194C2F9A5258}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

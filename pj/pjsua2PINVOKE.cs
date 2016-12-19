@@ -193,14 +193,14 @@ class pjsua2PINVOKE {
       public delegate void PjExceptionDelegate(int status, string title, string reason, string message);
       static PjExceptionDelegate pjExceptionDelegate = new PjExceptionDelegate(SetPendingPjException);
 
-      [DllImport("pjsua2", EntryPoint="PjExceptionRegisterCallback")]
+      [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="PjExceptionRegisterCallback")]
       public static extern void PjExceptionRegisterCallback(PjExceptionDelegate customCallback);
 
       static void SetPendingPjException(int status, string title, string reason, string message) {
         SWIGPendingException.Set(new PjRumtimeException(state, title, reason, message));
       }
 
-      static CustomExceptionHelper() {
+      static PjExceptionHelper() {
         PjExceptionRegisterCallback(pjExceptionDelegate);
       }
     }

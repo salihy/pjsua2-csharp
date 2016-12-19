@@ -53,14 +53,14 @@ using namespace pj;
       public delegate void PjExceptionDelegate(int status, string title, string reason, string message);
       static PjExceptionDelegate pjExceptionDelegate = new PjExceptionDelegate(SetPendingPjException);
 
-      [DllImport("$dllimport", EntryPoint="PjExceptionRegisterCallback")]
+      [global::System.Runtime.InteropServices.DllImport("$dllimport", EntryPoint="PjExceptionRegisterCallback")]
       public static extern void PjExceptionRegisterCallback(PjExceptionDelegate customCallback);
 
       static void SetPendingPjException(int status, string title, string reason, string message) {
         SWIGPendingException.Set(new PjRumtimeException(state, title, reason, message));
       }
 
-      static CustomExceptionHelper() {
+      static PjExceptionHelper() {
         PjExceptionRegisterCallback(pjExceptionDelegate);
       }
     }
