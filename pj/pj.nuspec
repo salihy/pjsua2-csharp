@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>pjsua2-charp</id>
+    <id>pjsua2-swig-csharp</id>
     <version>$version$</version>
     <title>$title$</title>
     <summary>PJSIP csharp interop project</summary>
