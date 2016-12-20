@@ -11,6 +11,12 @@
 ## 编译 [pjsip]
 按照官方文档，使用`VisualStudio`编译[pjsip]项目
 
+## 修改 [swig] 接口定义
+由于官方[swig]接口未专门定义`csharp`语言接口，其命名规则不符合`csharp`语言大小写命名的习惯。
+此外，`C++`异常`pj::Error`无法抛出到`dotNet`运行时。
+
+由于修改接口的大小写命名比较麻烦，所以添加`csharp`的异常包装类`pj.RuntimeExcepton`，详见[swig]参考手册。
+
 ## 生成 Wrapper 代码
 在命令行中定位到项目目录，然后执行：
 ```bat
