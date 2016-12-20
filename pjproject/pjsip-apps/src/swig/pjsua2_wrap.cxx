@@ -310,7 +310,7 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_pjsua2(SWIG_CSharpStringH
     void SWIGSTDCALL PjExceptionRegisterCallback(CSharpExceptionCallback_t customCallback) {
       pjExceptionCallback = customCallback;
     }
-  
+
     // Note that SWIG detects any method calls named starting with
     // SWIG_CSharpSetPendingException for warning 845
     static void SWIG_CSharpSetPendingExceptionPj(int status, const char* title, const char* reason, const char* info) {
@@ -4451,7 +4451,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentObject_readObject(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -4474,7 +4474,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentObject_writeObject(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -4514,7 +4514,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_loadFile(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -4538,7 +4538,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_loadString(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -4562,7 +4562,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_saveFile(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -4581,7 +4581,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_PersistentDocument_saveString(void * jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4626,7 +4626,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_PersistentDocument_unreadName(void * jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4654,7 +4654,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_PersistentDocument_readInt__SWIG_0(void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4675,7 +4675,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_PersistentDocument_readInt__SWIG_1(void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4703,7 +4703,7 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pj_PersistentDocument_readNumber__SWIG_0(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4724,7 +4724,7 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pj_PersistentDocument_readNumber__SWIG_1(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4752,7 +4752,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_PersistentDocument_readBool__SWIG_
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4773,7 +4773,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_PersistentDocument_readBool__SWIG_
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4801,7 +4801,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_PersistentDocument_readString__SWIG_0(vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4822,7 +4822,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_PersistentDocument_readString__SWIG_1(vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4850,7 +4850,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readStringVector__SWI
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4871,7 +4871,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readStringVector__SWI
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4896,7 +4896,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_readObject(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -4922,7 +4922,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readContainer__SWIG_0
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4943,7 +4943,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readContainer__SWIG_1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4971,7 +4971,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readArray__SWIG_0(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -4992,7 +4992,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readArray__SWIG_1(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5020,7 +5020,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeNumber(void * jarg
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5046,7 +5046,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeInt(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5072,7 +5072,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeBool(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5103,7 +5103,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeString(void * jarg
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5133,7 +5133,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeStringVector(void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5156,7 +5156,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeObject(void * jarg
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5182,7 +5182,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_writeNewContainer(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5210,7 +5210,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_writeNewArray(void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5243,7 +5243,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_ContainerNode_unreadName(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5271,7 +5271,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_ContainerNode_readInt__SWIG_0(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5292,7 +5292,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_ContainerNode_readInt__SWIG_1(void * jarg1)
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5320,7 +5320,7 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pj_ContainerNode_readNumber__SWIG_0(void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5341,7 +5341,7 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pj_ContainerNode_readNumber__SWIG_1(void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5369,7 +5369,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_ContainerNode_readBool__SWIG_0(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5390,7 +5390,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_ContainerNode_readBool__SWIG_1(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5418,7 +5418,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_ContainerNode_readString__SWIG_0(void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5439,7 +5439,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_ContainerNode_readString__SWIG_1(void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5467,7 +5467,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readStringVector__SWIG_0(v
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5488,7 +5488,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readStringVector__SWIG_1(v
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5513,7 +5513,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_readObject(void * jarg1, voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5539,7 +5539,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readContainer__SWIG_0(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5560,7 +5560,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readContainer__SWIG_1(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5588,7 +5588,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readArray__SWIG_0(void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5609,7 +5609,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readArray__SWIG_1(void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5637,7 +5637,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeNumber(void * jarg1, ch
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5663,7 +5663,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeInt(void * jarg1, char 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5689,7 +5689,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeBool(void * jarg1, char
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5720,7 +5720,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeString(void * jarg1, ch
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5750,7 +5750,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeStringVector(void * jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5773,7 +5773,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeObject(void * jarg1, vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -5799,7 +5799,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_writeNewContainer(void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -5827,7 +5827,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_writeNewArray(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -6130,7 +6130,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AuthCredInfo_readObject(void * jarg1, void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -6153,7 +6153,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AuthCredInfo_writeObject(void * jarg1, voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -6522,7 +6522,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_TlsConfig_readObject(void * jarg1, void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -6545,7 +6545,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_TlsConfig_writeObject(void * jarg1, void *
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -6750,7 +6750,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_TransportConfig_readObject(void * jarg1, v
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -6773,7 +6773,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_TransportConfig_writeObject(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -14595,7 +14595,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudioMedia_getPortInfo(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -14628,7 +14628,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudioMedia_getPortInfoFromId(int jarg1) 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -14653,7 +14653,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMedia_startTransmit(void * jarg1, voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -14676,7 +14676,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMedia_stopTransmit(void * jarg1, void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -14695,7 +14695,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMedia_adjustRxLevel(void * jarg1, flo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -14714,7 +14714,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMedia_adjustTxLevel(void * jarg1, flo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -14733,7 +14733,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudioMedia_getRxLevel(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -14754,7 +14754,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudioMedia_getTxLevel(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -14918,7 +14918,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlayer__SWIG_0(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -14942,7 +14942,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlayer__SWIG_1(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -14974,7 +14974,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlaylist__SWIG_0(vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15004,7 +15004,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlaylist__SWIG_1(vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15027,7 +15027,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlaylist__SWIG_2(vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15046,7 +15046,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudioMediaPlayer_getInfo(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -15067,7 +15067,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudioMediaPlayer_getPos(void * jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -15088,7 +15088,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_setPos(void * jarg1, unsi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15187,7 +15187,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaRecorder_createRecorder__SWIG_0(
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15221,7 +15221,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaRecorder_createRecorder__SWIG_1(
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15247,7 +15247,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaRecorder_createRecorder__SWIG_2(
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15271,7 +15271,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaRecorder_createRecorder__SWIG_3(
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15455,7 +15455,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_createToneGenerator__SWIG_0(
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15474,7 +15474,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_createToneGenerator__SWIG_1(
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15491,7 +15491,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_createToneGenerator__SWIG_2(
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15520,7 +15520,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_stop(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15537,7 +15537,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_rewind(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15562,7 +15562,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_play__SWIG_0(void * jarg1, v
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15585,7 +15585,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_play__SWIG_1(void * jarg1, v
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15610,7 +15610,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_playDigits__SWIG_0(void * ja
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15633,7 +15633,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_playDigits__SWIG_1(void * ja
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15652,7 +15652,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ToneGenerator_getDigitMap(void * jarg1) 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -15677,7 +15677,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_setDigitMap(void * jarg1, vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -15900,7 +15900,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_getCaptureDev(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -15921,7 +15921,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_getCaptureDevMedia(void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -15942,7 +15942,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_getPlaybackDev(void * jarg1) 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -15963,7 +15963,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_getPlaybackDevMedia(void *
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -15984,7 +15984,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setCaptureDev(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16003,7 +16003,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setPlaybackDev(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16022,7 +16022,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_enumDev(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16041,7 +16041,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setNullDev(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16072,7 +16072,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setSndDevMode(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16093,7 +16093,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setEcOptions(void * jarg1, u
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16112,7 +16112,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getEcTail(void * jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16143,7 +16143,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_refreshDevs(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16176,7 +16176,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_getDevInfo(void * jarg1, i
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16211,7 +16211,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_lookupDev(void * jarg1, char 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16252,7 +16252,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setExtFormat__SWIG_0(void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16275,7 +16275,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setExtFormat__SWIG_1(void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16294,7 +16294,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_getExtFormat(void * jarg1)
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16317,7 +16317,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputLatency__SWIG_0(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16336,7 +16336,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputLatency__SWIG_1(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16355,7 +16355,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getInputLatency(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16378,7 +16378,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputLatency__SWIG_0(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16397,7 +16397,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputLatency__SWIG_1(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16416,7 +16416,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getOutputLatency(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16439,7 +16439,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputVolume__SWIG_0(void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16458,7 +16458,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputVolume__SWIG_1(void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16477,7 +16477,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getInputVolume(void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16500,7 +16500,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputVolume__SWIG_0(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16519,7 +16519,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputVolume__SWIG_1(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16538,7 +16538,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getOutputVolume(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16559,7 +16559,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getInputSignal(void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16580,7 +16580,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getOutputSignal(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16603,7 +16603,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputRoute__SWIG_0(void *
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16622,7 +16622,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputRoute__SWIG_1(void *
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16641,7 +16641,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_getInputRoute(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16664,7 +16664,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputRoute__SWIG_0(void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16683,7 +16683,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputRoute__SWIG_1(void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16702,7 +16702,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_getOutputRoute(void * jarg1) 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16725,7 +16725,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setVad__SWIG_0(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16744,7 +16744,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setVad__SWIG_1(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16763,7 +16763,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getVad(void * jarg1)
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16786,7 +16786,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setCng__SWIG_0(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16805,7 +16805,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setCng__SWIG_1(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16824,7 +16824,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getCng(void * jarg1)
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -16847,7 +16847,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setPlc__SWIG_0(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16866,7 +16866,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setPlc__SWIG_1(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -16885,7 +16885,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getPlc(void * jarg1)
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -17288,7 +17288,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VideoWindow_getInfo(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -17309,7 +17309,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_Show(void * jarg1, unsigned in
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17332,7 +17332,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_setPos(void * jarg1, void * ja
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17355,7 +17355,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_setSize(void * jarg1, void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17374,7 +17374,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_rotate(void * jarg1, int jarg2
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17397,7 +17397,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_setWindow(void * jarg1, void *
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17580,7 +17580,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoPreview_start(void * jarg1, void * ja
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17597,7 +17597,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoPreview_stop(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17834,7 +17834,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_refreshDevs(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17867,7 +17867,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VidDevManager_getDevInfo(void * jarg1, i
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -17888,7 +17888,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VidDevManager_enumDev(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -17923,7 +17923,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_VidDevManager_lookupDev(void * jarg1, char 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -17966,7 +17966,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setFormat(void * jarg1, int 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -17987,7 +17987,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VidDevManager_getFormat(void * jarg1, in
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -18016,7 +18016,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setInputScale(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -18037,7 +18037,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VidDevManager_getInputScale(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -18062,7 +18062,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setOutputWindowFlags(void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -18083,7 +18083,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_VidDevManager_getOutputWindowFlags(void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -18110,7 +18110,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_switchDev(void * jarg1, int 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -18147,7 +18147,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setCaptureOrient__SWIG_0(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -18168,7 +18168,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setCaptureOrient__SWIG_1(voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -18743,7 +18743,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_BuddyConfig_readObject(void * jarg1, void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -18766,7 +18766,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_BuddyConfig_writeObject(void * jarg1, void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19045,7 +19045,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_create(void * jarg1, void * jarg2, v
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19076,7 +19076,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Buddy_getInfo(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -19097,7 +19097,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_subscribePresence(void * jarg1, unsi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19114,7 +19114,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_updatePresence(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19137,7 +19137,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_sendInstantMessage(void * jarg1, voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19160,7 +19160,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_sendTypingIndication(void * jarg1, v
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19455,7 +19455,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountRegConfig_readObject(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19478,7 +19478,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountRegConfig_writeObject(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19715,7 +19715,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountSipConfig_readObject(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19738,7 +19738,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountSipConfig_writeObject(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19889,7 +19889,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountCallConfig_readObject(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -19912,7 +19912,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountCallConfig_writeObject(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -20068,7 +20068,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountPresConfig_readObject(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -20091,7 +20091,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountPresConfig_writeObject(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -20176,7 +20176,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountMwiConfig_readObject(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -20199,7 +20199,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountMwiConfig_writeObject(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -20820,7 +20820,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountNatConfig_readObject(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -20843,7 +20843,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountNatConfig_writeObject(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -21016,7 +21016,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountMediaConfig_readObject(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -21039,7 +21039,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountMediaConfig_writeObject(void * jarg
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -21234,7 +21234,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountVideoConfig_readObject(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -21257,7 +21257,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountVideoConfig_writeObject(void * jarg
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -21533,7 +21533,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountConfig_readObject(void * jarg1, voi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -21556,7 +21556,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountConfig_writeObject(void * jarg1, vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23059,7 +23059,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_create__SWIG_0(void * jarg1, void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23082,7 +23082,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_create__SWIG_1(void * jarg1, void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23105,7 +23105,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_modify(void * jarg1, void * jarg2)
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23134,7 +23134,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_setDefault(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23189,7 +23189,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Account_getInfo(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -23210,7 +23210,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_setRegistration(void * jarg1, unsi
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23233,7 +23233,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_setOnlineStatus(void * jarg1, void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23252,7 +23252,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_setTransport(void * jarg1, int jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23275,7 +23275,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_presNotify(void * jarg1, void * ja
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -23294,7 +23294,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Account_enumBuddies(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -23323,7 +23323,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Account_findBuddy__SWIG_0(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -23350,7 +23350,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Account_findBuddy__SWIG_1(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -27791,7 +27791,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Call_getInfo(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -27924,7 +27924,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_Call_getRemNatType(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -27956,7 +27956,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_makeCall(void * jarg1, char * jarg2, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -27979,7 +27979,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_answer(void * jarg1, void * jarg2) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28002,7 +28002,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_hangup(void * jarg1, void * jarg2) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28025,7 +28025,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_setHold(void * jarg1, void * jarg2) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28048,7 +28048,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_reinvite(void * jarg1, void * jarg2) 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28071,7 +28071,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_update(void * jarg1, void * jarg2) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28101,7 +28101,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_xfer(void * jarg1, char * jarg2, void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28130,7 +28130,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_xferReplaces(void * jarg1, void * jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28149,7 +28149,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_processRedirect(void * jarg1, int jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28173,7 +28173,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_dialDtmf(void * jarg1, char * jarg2) 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28196,7 +28196,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_sendInstantMessage(void * jarg1, void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28219,7 +28219,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_sendTypingIndication(void * jarg1, vo
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28242,7 +28242,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_sendRequest(void * jarg1, void * jarg
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28269,7 +28269,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_Call_dump(void * jarg1, unsigned int jar
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -28324,7 +28324,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_vidSetStream(void * jarg1, int jarg2,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -28345,7 +28345,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Call_getStreamInfo(void * jarg1, unsigne
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -28368,7 +28368,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Call_getStreamStat(void * jarg1, unsigne
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -28391,7 +28391,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Call_getMedTransportInfo(void * jarg1, u
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -29420,7 +29420,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_JsonDocument_loadFile(void * jarg1, char *
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -29444,7 +29444,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_JsonDocument_loadString(void * jarg1, char
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -29468,7 +29468,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_JsonDocument_saveFile(void * jarg1, char *
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -29487,7 +29487,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_JsonDocument_saveString(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -30177,7 +30177,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_UaConfig_readObject(void * jarg1, void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -30200,7 +30200,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_UaConfig_writeObject(void * jarg1, void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -30557,7 +30557,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_LogConfig_readObject(void * jarg1, void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -30580,7 +30580,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_LogConfig_writeObject(void * jarg1, void *
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31127,7 +31127,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_MediaConfig_readObject(void * jarg1, void 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31150,7 +31150,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_MediaConfig_writeObject(void * jarg1, void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31247,7 +31247,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_EpConfig_readObject(void * jarg1, void * j
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31270,7 +31270,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_EpConfig_writeObject(void * jarg1, void * 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31323,7 +31323,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_instance() {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -31372,7 +31372,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libCreate(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31407,7 +31407,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libInit(void * jarg1, void * jarg
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31424,7 +31424,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libStart(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31448,7 +31448,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libRegisterThread(void * jarg1, c
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31501,7 +31501,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libDestroy__SWIG_0(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31518,7 +31518,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libDestroy__SWIG_1(void * jarg1) 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31631,7 +31631,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_utilTimerSchedule(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -31672,7 +31672,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_utilSslGetAvailableCiphers(void
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -31691,7 +31691,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natDetectType(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31710,7 +31710,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_Endpoint_natGetType(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -31737,7 +31737,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natUpdateStunServers(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31764,7 +31764,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natCheckStunServers(void * jarg1,
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31785,7 +31785,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natCancelCheckStunServers__SWIG_0
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31804,7 +31804,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natCancelCheckStunServers__SWIG_1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31831,7 +31831,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_Endpoint_transportCreate(void * jarg1, int 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -31852,7 +31852,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_transportEnum(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -31875,7 +31875,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_transportGetInfo(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -31898,7 +31898,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_transportSetEnable(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -31917,7 +31917,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_transportClose(void * jarg1, int 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -32014,7 +32014,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_mediaEnumPorts(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -32059,7 +32059,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_codecEnum(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -32087,7 +32087,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_codecSetPriority(void * jarg1, ch
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -32113,7 +32113,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_codecGetParam(void * jarg1, cha
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -32141,7 +32141,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_codecSetParam(void * jarg1, char 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -32160,7 +32160,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_videoCodecEnum(void * jarg1) {
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -32188,7 +32188,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_videoCodecSetPriority(void * jarg
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -32214,7 +32214,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_getVideoCodecParam(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return 0;
     }
   }
@@ -32246,7 +32246,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_setVideoCodecParam(void * jarg1, 
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }
@@ -32270,7 +32270,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_resetVideoCodecParam(void * jarg1
   }
   catch(pj::Error &_e) {
     {
-      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info().c_str());
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
       return ;
     }
   }

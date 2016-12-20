@@ -39,7 +39,7 @@ using namespace pj;
     void SWIGSTDCALL PjExceptionRegisterCallback(CSharpExceptionCallback_t customCallback) {
       pjExceptionCallback = customCallback;
     }
-  
+
     // Note that SWIG detects any method calls named starting with
     // SWIG_CSharpSetPendingException for warning 845
     static void SWIG_CSharpSetPendingExceptionPj(int status, const char* title, const char* reason, const char* info) {
@@ -67,9 +67,10 @@ using namespace pj;
     static PjRumtimeExceptionHelper pjExceptionHelper = new PjRumtimeExceptionHelper();
   %}
 
-  %pragma(csharp) imclasscode=%{
-    class PjRumtimeException : System.ApplicationException {
-      public PjRumtimeException(int status, string title, string reason, string message) 
+  %typemap(csclassmodifiers) PjRumtimeException "public partial class"
+  %pragma(csharp) moduleimports= %{
+    public partial class PjRumtimeException : System.ApplicationException {
+      public PjRumtimeException(int status, string title, string reason, string message)
         : base(message) {
         _status = status;
         _title = title;
@@ -78,7 +79,6 @@ using namespace pj;
       private int _status;
       private string _title;
       private string _reason;
-      private string _info;
       public int status {
         get {return _status;}
       }
@@ -88,14 +88,11 @@ using namespace pj;
       public string reason {
         get {return _reason;}
       }
-      public string info {
-        get {return _info;}
-      }
     }
   %}
 
   %typemap(throws, canthrow=1) pj::Error {
-    SWIG_CSharpSetPendingExceptionPj($1.status, $1.title.c_str(), $1.reason.c_str(), $1.info().c_str());
+    SWIG_CSharpSetPendingExceptionPj($1.status, $1.title.c_str(), $1.reason.c_str(), $1.info(true).c_str());
     return $null;
   }
 #endif
@@ -118,7 +115,7 @@ using namespace pj;
   public String getMessage() {
     return getTitle();
   }
-  
+
   // Disable serialization (check ticket #1868)
   private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
     throw new java.io.NotSerializableException("Check ticket #1868!");
@@ -138,7 +135,7 @@ using namespace pj;
 // Classes that can be extended in the target language
 //
 %feature("director") LogWriter;
-%feature("director") Endpoint; 
+%feature("director") Endpoint;
 %feature("director") Account;
 %feature("director") Call;
 %feature("director") Buddy;
@@ -185,7 +182,7 @@ using namespace pj;
 %template(AudioDevInfoVector)		std::vector<pj::AudioDevInfo*>;
 %template(CodecInfoVector)		std::vector<pj::CodecInfo*>;
 %template(VideoDevInfoVector)		std::vector<pj::VideoDevInfo*>;
-%template(CodecFmtpVector)		std::vector<pj::CodecFmtp>;	
+%template(CodecFmtpVector)		std::vector<pj::CodecFmtp>;
 
 %ignore pj::WindowHandle::display;
 %ignore pj::WindowHandle::window;
@@ -241,4 +238,3 @@ using namespace pj;
 #endif
 
 %include "pjsua2/endpoint.hpp"
-
