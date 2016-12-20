@@ -26,77 +26,6 @@ using namespace pj;
   }
 #endif
 
-// Allow C++ exceptions to be handled in CSharp
-#ifdef SWIGCSHARP
-  %insert(runtime) %{
-    // Code to handle throwing of C# CustomApplicationException from C/C++ code.
-    // The equivalent delegate to the callback, CSharpExceptionCallback_t, is PjExceptionDelegate
-    // and the equivalent pjExceptionCallback instance is pjExceptionDelegate
-    typedef void (SWIGSTDCALL* CSharpExceptionCallback_t)(int status, const char* title, const char* reason, const char* info);
-    CSharpExceptionCallback_t pjExceptionCallback = NULL;
-
-    extern "C" SWIGEXPORT
-    void SWIGSTDCALL PjExceptionRegisterCallback(CSharpExceptionCallback_t customCallback) {
-      pjExceptionCallback = customCallback;
-    }
-
-    // Note that SWIG detects any method calls named starting with
-    // SWIG_CSharpSetPendingException for warning 845
-    static void SWIG_CSharpSetPendingExceptionPj(int status, const char* title, const char* reason, const char* info) {
-      pjExceptionCallback(status, title, reason, info);
-    }
-  %}
-
-  %pragma(csharp) imclasscode=%{
-    class PjRumtimeExceptionHelper {
-      // C# delegate for the C/C++ pjExceptionCallback
-      public delegate void PjExceptionDelegate(int status, string title, string reason, string message);
-      static PjExceptionDelegate pjExceptionDelegate = new PjExceptionDelegate(SetPendingPjException);
-
-      [global::System.Runtime.InteropServices.DllImport("$dllimport", EntryPoint="PjExceptionRegisterCallback")]
-      public static extern void PjExceptionRegisterCallback(PjExceptionDelegate customCallback);
-
-      static void SetPendingPjException(int status, string title, string reason, string message) {
-        SWIGPendingException.Set(new PjRumtimeException(status, title, reason, message));
-      }
-
-      static void PjExceptionHelper() {
-        PjExceptionRegisterCallback(pjExceptionDelegate);
-      }
-    }
-    static PjRumtimeExceptionHelper pjExceptionHelper = new PjRumtimeExceptionHelper();
-  %}
-
-  %typemap(csclassmodifiers) PjRumtimeException "public partial class"
-  %pragma(csharp) moduleimports= %{
-    public partial class PjRumtimeException : System.ApplicationException {
-      public PjRumtimeException(int status, string title, string reason, string message)
-              : base(message) {
-        _status = status;
-        _title = title;
-        _reason = reason;
-      }
-      private int _status;
-      private string _title;
-      private string _reason;
-      public int status {
-        get {return _status;}
-      }
-      public string title {
-        get {return _title;}
-      }
-      public string reason {
-        get {return _reason;}
-      }
-    }
-  %}
-
-  %typemap(throws, canthrow=1) pj::Error {
-    SWIG_CSharpSetPendingExceptionPj($1.status, $1.title.c_str(), $1.reason.c_str(), $1.info(true).c_str());
-    return $null;
-  }
-#endif
-
 // Allow C++ exceptions to be handled in Java
 #ifdef SWIGJAVA
   %typemap(throws, throws="java.lang.Exception") pj::Error {
@@ -115,7 +44,7 @@ using namespace pj;
   public String getMessage() {
     return getTitle();
   }
-
+  
   // Disable serialization (check ticket #1868)
   private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
     throw new java.io.NotSerializableException("Check ticket #1868!");
@@ -127,6 +56,7 @@ using namespace pj;
 %}
 #endif
 
+
 // Constants from PJSIP libraries
 %include "symbols.i"
 
@@ -135,7 +65,7 @@ using namespace pj;
 // Classes that can be extended in the target language
 //
 %feature("director") LogWriter;
-%feature("director") Endpoint;
+%feature("director") Endpoint; 
 %feature("director") Account;
 %feature("director") Call;
 %feature("director") Buddy;
@@ -182,7 +112,7 @@ using namespace pj;
 %template(AudioDevInfoVector)		std::vector<pj::AudioDevInfo*>;
 %template(CodecInfoVector)		std::vector<pj::CodecInfo*>;
 %template(VideoDevInfoVector)		std::vector<pj::VideoDevInfo*>;
-%template(CodecFmtpVector)		std::vector<pj::CodecFmtp>;
+%template(CodecFmtpVector)		std::vector<pj::CodecFmtp>;	
 
 %ignore pj::WindowHandle::display;
 %ignore pj::WindowHandle::window;
@@ -238,3 +168,4 @@ using namespace pj;
 #endif
 
 %include "pjsua2/endpoint.hpp"
+
