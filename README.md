@@ -1,4 +1,4 @@
-# pjsua2-charp
+# pjsua2-csharp
 该项目旨在为[pjsip]项目提供`CSharp`语言和`dotNET`环境可调用的库。
 它使用了[pjsip]项目官方[swig]接口定义生成的`C/C++`和`CSharp` Wrapper源代码。
 
