@@ -200,11 +200,12 @@ class pjsua2PINVOKE {
         SWIGPendingException.Set(new RumtimeException(status, title, reason, message));
       }
 
-      static void PjExceptionHelper() {
+      static RumtimeExceptionHelper() {
         PjExceptionRegisterCallback(pjExceptionDelegate);
       }
     }
-    static RumtimeExceptionHelper pjExceptionHelper = new RumtimeExceptionHelper();
+
+    static RumtimeExceptionHelper runtimeExceptionHelper = new RumtimeExceptionHelper();
   
 
   [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="CSharp_pj_pj_qos_params_flags_set")]
