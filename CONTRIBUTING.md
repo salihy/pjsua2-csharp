@@ -20,8 +20,8 @@
 ## 生成 Wrapper 代码
 在命令行中定位到项目目录，然后执行：
 ```bat
-mkdir -p pjsip-apps\src\swig\csharp
 cd pjsip\include
+mkdir -p ..\..\pjsip-apps\src\swig\csharp
 swig -csharp -namespace pj -c++ -outdir ..\..\pjsip-apps\src\swig\csharp\ ..\..\pjsip-apps\src\swig\pjsua2.i
 ```
 

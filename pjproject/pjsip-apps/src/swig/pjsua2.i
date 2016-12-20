@@ -30,13 +30,13 @@ using namespace pj;
 #ifdef SWIGCSHARP
   %insert(runtime) %{
     // Code to handle throwing of C# CustomApplicationException from C/C++ code.
-    // The equivalent delegate to the callback, CSharpExceptionCallback_t, is PjExceptionDelegate
+    // The equivalent delegate to the callback, CSharpPjExceptionCallback_t, is PjExceptionDelegate
     // and the equivalent pjExceptionCallback instance is pjExceptionDelegate
-    typedef void (SWIGSTDCALL* CSharpExceptionCallback_t)(int status, const char* title, const char* reason, const char* info);
-    CSharpExceptionCallback_t pjExceptionCallback = NULL;
+    typedef void (SWIGSTDCALL* CSharpPjExceptionCallback_t)(int status, const char* title, const char* reason, const char* info);
+    CSharpPjExceptionCallback_t pjExceptionCallback = NULL;
 
     extern "C" SWIGEXPORT
-    void SWIGSTDCALL PjExceptionRegisterCallback(CSharpExceptionCallback_t customCallback) {
+    void SWIGSTDCALL PjExceptionRegisterCallback(CSharpPjExceptionCallback_t customCallback) {
       pjExceptionCallback = customCallback;
     }
 
@@ -60,11 +60,12 @@ using namespace pj;
         SWIGPendingException.Set(new RumtimeException(status, title, reason, message));
       }
 
-      static void PjExceptionHelper() {
+      static RumtimeExceptionHelper() {
         PjExceptionRegisterCallback(pjExceptionDelegate);
       }
     }
-    static RumtimeExceptionHelper pjExceptionHelper = new RumtimeExceptionHelper();
+
+    static RumtimeExceptionHelper runtimeExceptionHelper = new RumtimeExceptionHelper();
   %}
 
   %typemap(csclassmodifiers) RumtimeException "public partial class"

@@ -36,13 +36,13 @@ namespace winform_sample
             ep.libInit(ep_cfg);
 
             var trans_cfg = new TransportConfig();
-            trans_cfg.port = 5062;
+            trans_cfg.port = 5060;
             ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, trans_cfg);
 
             ep.libStart();
 
             var acc_cfg = new AccountConfig();
-            acc_cfg.idUri = "sip:0.0.0.0:5062";
+            acc_cfg.idUri = string.Format("sip:0.0.0.0:{0}", trans_cfg.port);
             localAcc = new MyAccount();
             localAcc.create(acc_cfg);
         }
