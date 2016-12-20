@@ -2,7 +2,7 @@
 
 注意：
 > 本项目的代码 **不是** 源自此项目的代码提交者，而是来自于[pjsip]项目，以及它通过[swig]工具自动生成的代码。
-> 
+>
 > 所以，本文记录了这个项目如何产生、如何构建，而不介绍它的编程思想和架构。
 
 ## 安装 [swig]
@@ -61,7 +61,7 @@ libpjproject-i386-<arch>-<vc-version>-<Debug|Release>.lib;wsock32.lib;ws2_32.lib
 ### CSharp Interop 项目
 将[swig]生成的 CSharp 代码编译成 dotNet 库，此库通过 Interop 方式访问上个项目生成的原生动态库。
 
-1. 新建CSharp类库项目`pj` 
+1. 新建CSharp类库项目`pj`
 2. 删除项目源文件`pj.cs`
 3. 将源文件`pjproject/pjsip-apps/src/swig/csharp/*.cs`加入到项目
 4. 编译

@@ -10,6 +10,27 @@
 
 namespace pj {
 
+    public partial class RumtimeException : System.ApplicationException {
+      public RumtimeException(int status, string title, string reason, string message)
+              : base(message) {
+        _status = status;
+        _title = title;
+        _reason = reason;
+      }
+      private int _status;
+      private string _title;
+      private string _reason;
+      public int status {
+        get {return _status;}
+      }
+      public string title {
+        get {return _title;}
+      }
+      public string reason {
+        get {return _reason;}
+      }
+    }
+  
 public class pjsua2 {
   public static readonly int INVALID_ID = pjsua2PINVOKE.INVALID_ID_get();
   public static readonly int SUCCESS = pjsua2PINVOKE.SUCCESS_get();

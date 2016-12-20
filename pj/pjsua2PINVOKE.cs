@@ -188,6 +188,25 @@ class pjsua2PINVOKE {
   }
 
 
+    class RumtimeExceptionHelper {
+      // C# delegate for the C/C++ pjExceptionCallback
+      public delegate void PjExceptionDelegate(int status, string title, string reason, string message);
+      static PjExceptionDelegate pjExceptionDelegate = new PjExceptionDelegate(SetPendingPjException);
+
+      [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="PjExceptionRegisterCallback")]
+      public static extern void PjExceptionRegisterCallback(PjExceptionDelegate customCallback);
+
+      static void SetPendingPjException(int status, string title, string reason, string message) {
+        SWIGPendingException.Set(new RumtimeException(status, title, reason, message));
+      }
+
+      static void PjExceptionHelper() {
+        PjExceptionRegisterCallback(pjExceptionDelegate);
+      }
+    }
+    static RumtimeExceptionHelper pjExceptionHelper = new RumtimeExceptionHelper();
+  
+
   [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="CSharp_pj_pj_qos_params_flags_set")]
   public static extern void pj_qos_params_flags_set(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
 

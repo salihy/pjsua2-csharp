@@ -299,6 +299,24 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_pjsua2(SWIG_CSharpStringH
 
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, msg, ""); return nullreturn; } else
 
+
+    // Code to handle throwing of C# CustomApplicationException from C/C++ code.
+    // The equivalent delegate to the callback, CSharpExceptionCallback_t, is PjExceptionDelegate
+    // and the equivalent pjExceptionCallback instance is pjExceptionDelegate
+    typedef void (SWIGSTDCALL* CSharpExceptionCallback_t)(int status, const char* title, const char* reason, const char* info);
+    CSharpExceptionCallback_t pjExceptionCallback = NULL;
+
+    extern "C" SWIGEXPORT
+    void SWIGSTDCALL PjExceptionRegisterCallback(CSharpExceptionCallback_t customCallback) {
+      pjExceptionCallback = customCallback;
+    }
+
+    // Note that SWIG detects any method calls named starting with
+    // SWIG_CSharpSetPendingException for warning 845
+    static void SWIG_CSharpSetPendingExceptionPj(int status, const char* title, const char* reason, const char* message) {
+      pjExceptionCallback(status, title, reason, message);
+    }
+  
 /* -----------------------------------------------------------------------------
  * director_common.swg
  *
@@ -4432,9 +4450,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentObject_readObject(void * jarg1, 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -4454,9 +4473,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentObject_writeObject(void * jarg1,
     ((pj::PersistentObject const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -4493,9 +4513,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_loadFile(void * jarg1, 
     (arg1)->loadFile((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -4516,9 +4537,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_loadString(void * jarg1
     (arg1)->loadString((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -4539,9 +4561,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_saveFile(void * jarg1, 
     (arg1)->saveFile((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -4557,9 +4580,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_PersistentDocument_saveString(void * jar
     result = (arg1)->saveString();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -4601,9 +4625,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_PersistentDocument_unreadName(void * jar
     result = ((pj::PersistentDocument const *)arg1)->unreadName();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -4628,9 +4653,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_PersistentDocument_readInt__SWIG_0(void * j
     result = (int)((pj::PersistentDocument const *)arg1)->readInt((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -4648,9 +4674,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_PersistentDocument_readInt__SWIG_1(void * j
     result = (int)((pj::PersistentDocument const *)arg1)->readInt();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -4675,9 +4702,10 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pj_PersistentDocument_readNumber__SWIG_0(voi
     result = (float)((pj::PersistentDocument const *)arg1)->readNumber((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -4695,9 +4723,10 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pj_PersistentDocument_readNumber__SWIG_1(voi
     result = (float)((pj::PersistentDocument const *)arg1)->readNumber();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -4722,9 +4751,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_PersistentDocument_readBool__SWIG_
     result = (bool)((pj::PersistentDocument const *)arg1)->readBool((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -4742,9 +4772,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_PersistentDocument_readBool__SWIG_
     result = (bool)((pj::PersistentDocument const *)arg1)->readBool();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -4769,9 +4800,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_PersistentDocument_readString__SWIG_0(vo
     result = ((pj::PersistentDocument const *)arg1)->readString((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -4789,9 +4821,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_PersistentDocument_readString__SWIG_1(vo
     result = ((pj::PersistentDocument const *)arg1)->readString();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -4816,9 +4849,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readStringVector__SWI
     result = ((pj::PersistentDocument const *)arg1)->readStringVector((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::StringVector((const pj::StringVector &)result); 
@@ -4836,9 +4870,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readStringVector__SWI
     result = ((pj::PersistentDocument const *)arg1)->readStringVector();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::StringVector((const pj::StringVector &)result); 
@@ -4860,9 +4895,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_readObject(void * jarg1
     ((pj::PersistentDocument const *)arg1)->readObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -4885,9 +4921,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readContainer__SWIG_0
     result = ((pj::PersistentDocument const *)arg1)->readContainer((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -4905,9 +4942,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readContainer__SWIG_1
     result = ((pj::PersistentDocument const *)arg1)->readContainer();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -4932,9 +4970,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readArray__SWIG_0(voi
     result = ((pj::PersistentDocument const *)arg1)->readArray((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -4952,9 +4991,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_readArray__SWIG_1(voi
     result = ((pj::PersistentDocument const *)arg1)->readArray();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -4979,9 +5019,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeNumber(void * jarg
     (arg1)->writeNumber((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5004,9 +5045,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeInt(void * jarg1, 
     (arg1)->writeInt((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5029,9 +5071,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeBool(void * jarg1,
     (arg1)->writeBool((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5059,9 +5102,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeString(void * jarg
     (arg1)->writeString((pj::string const &)*arg2,(pj::string const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5088,9 +5132,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeStringVector(void 
     (arg1)->writeStringVector((pj::string const &)*arg2,(pj::StringVector const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5110,9 +5155,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_PersistentDocument_writeObject(void * jarg
     (arg1)->writeObject((pj::PersistentObject const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5135,9 +5181,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_writeNewContainer(voi
     result = (arg1)->writeNewContainer((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -5162,9 +5209,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_PersistentDocument_writeNewArray(void * 
     result = (arg1)->writeNewArray((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -5194,9 +5242,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_ContainerNode_unreadName(void * jarg1) {
     result = ((pj::ContainerNode const *)arg1)->unreadName();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -5221,9 +5270,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_ContainerNode_readInt__SWIG_0(void * jarg1,
     result = (int)((pj::ContainerNode const *)arg1)->readInt((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -5241,9 +5291,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_ContainerNode_readInt__SWIG_1(void * jarg1)
     result = (int)((pj::ContainerNode const *)arg1)->readInt();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -5268,9 +5319,10 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pj_ContainerNode_readNumber__SWIG_0(void * j
     result = (float)((pj::ContainerNode const *)arg1)->readNumber((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -5288,9 +5340,10 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pj_ContainerNode_readNumber__SWIG_1(void * j
     result = (float)((pj::ContainerNode const *)arg1)->readNumber();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -5315,9 +5368,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_ContainerNode_readBool__SWIG_0(voi
     result = (bool)((pj::ContainerNode const *)arg1)->readBool((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -5335,9 +5389,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_ContainerNode_readBool__SWIG_1(voi
     result = (bool)((pj::ContainerNode const *)arg1)->readBool();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -5362,9 +5417,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_ContainerNode_readString__SWIG_0(void * 
     result = ((pj::ContainerNode const *)arg1)->readString((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -5382,9 +5438,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_ContainerNode_readString__SWIG_1(void * 
     result = ((pj::ContainerNode const *)arg1)->readString();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -5409,9 +5466,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readStringVector__SWIG_0(v
     result = ((pj::ContainerNode const *)arg1)->readStringVector((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::StringVector((const pj::StringVector &)result); 
@@ -5429,9 +5487,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readStringVector__SWIG_1(v
     result = ((pj::ContainerNode const *)arg1)->readStringVector();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::StringVector((const pj::StringVector &)result); 
@@ -5453,9 +5512,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_readObject(void * jarg1, voi
     ((pj::ContainerNode const *)arg1)->readObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5478,9 +5538,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readContainer__SWIG_0(void
     result = ((pj::ContainerNode const *)arg1)->readContainer((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -5498,9 +5559,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readContainer__SWIG_1(void
     result = ((pj::ContainerNode const *)arg1)->readContainer();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -5525,9 +5587,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readArray__SWIG_0(void * j
     result = ((pj::ContainerNode const *)arg1)->readArray((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -5545,9 +5608,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_readArray__SWIG_1(void * j
     result = ((pj::ContainerNode const *)arg1)->readArray();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -5572,9 +5636,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeNumber(void * jarg1, ch
     (arg1)->writeNumber((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5597,9 +5662,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeInt(void * jarg1, char 
     (arg1)->writeInt((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5622,9 +5688,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeBool(void * jarg1, char
     (arg1)->writeBool((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5652,9 +5719,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeString(void * jarg1, ch
     (arg1)->writeString((pj::string const &)*arg2,(pj::string const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5681,9 +5749,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeStringVector(void * jar
     (arg1)->writeStringVector((pj::string const &)*arg2,(pj::StringVector const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5703,9 +5772,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ContainerNode_writeObject(void * jarg1, vo
     (arg1)->writeObject((pj::PersistentObject const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -5728,9 +5798,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_writeNewContainer(void * j
     result = (arg1)->writeNewContainer((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -5755,9 +5826,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ContainerNode_writeNewArray(void * jarg1
     result = (arg1)->writeNewArray((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ContainerNode((const pj::ContainerNode &)result); 
@@ -6057,9 +6129,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AuthCredInfo_readObject(void * jarg1, void
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -6079,9 +6152,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AuthCredInfo_writeObject(void * jarg1, voi
     ((pj::AuthCredInfo const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -6447,9 +6521,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_TlsConfig_readObject(void * jarg1, void * 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -6469,9 +6544,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_TlsConfig_writeObject(void * jarg1, void *
     ((pj::TlsConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -6673,9 +6749,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_TransportConfig_readObject(void * jarg1, v
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -6695,9 +6772,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_TransportConfig_writeObject(void * jarg1, 
     ((pj::TransportConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14516,9 +14594,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudioMedia_getPortInfo(void * jarg1) {
     result = ((pj::AudioMedia const *)arg1)->getPortInfo();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ConfPortInfo((const pj::ConfPortInfo &)result); 
@@ -14548,9 +14627,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudioMedia_getPortInfoFromId(int jarg1) 
     result = pj::AudioMedia::getPortInfoFromId(arg1);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ConfPortInfo((const pj::ConfPortInfo &)result); 
@@ -14572,9 +14652,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMedia_startTransmit(void * jarg1, voi
     ((pj::AudioMedia const *)arg1)->startTransmit((pj::AudioMedia const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14594,9 +14675,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMedia_stopTransmit(void * jarg1, void
     ((pj::AudioMedia const *)arg1)->stopTransmit((pj::AudioMedia const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14612,9 +14694,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMedia_adjustRxLevel(void * jarg1, flo
     (arg1)->adjustRxLevel(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14630,9 +14713,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMedia_adjustTxLevel(void * jarg1, flo
     (arg1)->adjustTxLevel(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14648,9 +14732,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudioMedia_getRxLevel(void * jarg1
     result = (unsigned int)((pj::AudioMedia const *)arg1)->getRxLevel();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -14668,9 +14753,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudioMedia_getTxLevel(void * jarg1
     result = (unsigned int)((pj::AudioMedia const *)arg1)->getTxLevel();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -14831,9 +14917,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlayer__SWIG_0(void
     (arg1)->createPlayer((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14854,9 +14941,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlayer__SWIG_1(void
     (arg1)->createPlayer((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14885,9 +14973,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlaylist__SWIG_0(vo
     (arg1)->createPlaylist((pj::StringVector const &)*arg2,(pj::string const &)*arg3,arg4);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14914,9 +15003,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlaylist__SWIG_1(vo
     (arg1)->createPlaylist((pj::StringVector const &)*arg2,(pj::string const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14936,9 +15026,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_createPlaylist__SWIG_2(vo
     (arg1)->createPlaylist((pj::StringVector const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -14954,9 +15045,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudioMediaPlayer_getInfo(void * jarg1) {
     result = ((pj::AudioMediaPlayer const *)arg1)->getInfo();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::AudioMediaPlayerInfo((const pj::AudioMediaPlayerInfo &)result); 
@@ -14974,9 +15066,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudioMediaPlayer_getPos(void * jar
     result = (pj_uint32_t)((pj::AudioMediaPlayer const *)arg1)->getPos();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -14994,9 +15087,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaPlayer_setPos(void * jarg1, unsi
     (arg1)->setPos(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15092,9 +15186,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaRecorder_createRecorder__SWIG_0(
     (arg1)->createRecorder((pj::string const &)*arg2,arg3,arg4,arg5);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15125,9 +15220,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaRecorder_createRecorder__SWIG_1(
     (arg1)->createRecorder((pj::string const &)*arg2,arg3,arg4);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15150,9 +15246,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaRecorder_createRecorder__SWIG_2(
     (arg1)->createRecorder((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15173,9 +15270,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudioMediaRecorder_createRecorder__SWIG_3(
     (arg1)->createRecorder((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15356,9 +15454,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_createToneGenerator__SWIG_0(
     (arg1)->createToneGenerator(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15374,9 +15473,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_createToneGenerator__SWIG_1(
     (arg1)->createToneGenerator(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15390,9 +15490,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_createToneGenerator__SWIG_2(
     (arg1)->createToneGenerator();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15418,9 +15519,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_stop(void * jarg1) {
     (arg1)->stop();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15434,9 +15536,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_rewind(void * jarg1) {
     (arg1)->rewind();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15458,9 +15561,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_play__SWIG_0(void * jarg1, v
     (arg1)->play((pj::ToneDescVector const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15480,9 +15584,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_play__SWIG_1(void * jarg1, v
     (arg1)->play((pj::ToneDescVector const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15504,9 +15609,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_playDigits__SWIG_0(void * ja
     (arg1)->playDigits((pj::ToneDigitVector const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15526,9 +15632,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_playDigits__SWIG_1(void * ja
     (arg1)->playDigits((pj::ToneDigitVector const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15544,9 +15651,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_ToneGenerator_getDigitMap(void * jarg1) 
     result = ((pj::ToneGenerator const *)arg1)->getDigitMap();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::ToneDigitMapVector((const pj::ToneDigitMapVector &)result); 
@@ -15568,9 +15676,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_ToneGenerator_setDigitMap(void * jarg1, vo
     (arg1)->setDigitMap((pj::ToneDigitMapVector const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15790,9 +15899,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_getCaptureDev(void * jarg1) {
     result = (int)((pj::AudDevManager const *)arg1)->getCaptureDev();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -15810,9 +15920,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_getCaptureDevMedia(void * 
     result = (pj::AudioMedia *) &(arg1)->getCaptureDevMedia();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -15830,9 +15941,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_getPlaybackDev(void * jarg1) 
     result = (int)((pj::AudDevManager const *)arg1)->getPlaybackDev();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -15850,9 +15962,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_getPlaybackDevMedia(void *
     result = (pj::AudioMedia *) &(arg1)->getPlaybackDevMedia();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -15870,9 +15983,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setCaptureDev(void * jarg1, 
     ((pj::AudDevManager const *)arg1)->setCaptureDev(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15888,9 +16002,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setPlaybackDev(void * jarg1,
     ((pj::AudDevManager const *)arg1)->setPlaybackDev(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15906,9 +16021,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_enumDev(void * jarg1) {
     result = (pj::AudioDevInfoVector *) &(arg1)->enumDev();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -15924,9 +16040,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setNullDev(void * jarg1) {
     (arg1)->setNullDev();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15954,9 +16071,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setSndDevMode(void * jarg1, 
     ((pj::AudDevManager const *)arg1)->setSndDevMode(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15974,9 +16092,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setEcOptions(void * jarg1, u
     (arg1)->setEcOptions(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -15992,9 +16111,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getEcTail(void * jar
     result = (unsigned int)((pj::AudDevManager const *)arg1)->getEcTail();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16022,9 +16142,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_refreshDevs(void * jarg1) {
     (arg1)->refreshDevs();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16054,9 +16175,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_getDevInfo(void * jarg1, i
     result = ((pj::AudDevManager const *)arg1)->getDevInfo(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::AudioDevInfo((const pj::AudioDevInfo &)result); 
@@ -16088,9 +16210,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_lookupDev(void * jarg1, char 
     result = (int)((pj::AudDevManager const *)arg1)->lookupDev((pj::string const &)*arg2,(pj::string const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16128,9 +16251,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setExtFormat__SWIG_0(void * 
     (arg1)->setExtFormat((pj::MediaFormatAudio const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16150,9 +16274,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setExtFormat__SWIG_1(void * 
     (arg1)->setExtFormat((pj::MediaFormatAudio const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16168,9 +16293,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_AudDevManager_getExtFormat(void * jarg1)
     result = ((pj::AudDevManager const *)arg1)->getExtFormat();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::MediaFormatAudio((const pj::MediaFormatAudio &)result); 
@@ -16190,9 +16316,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputLatency__SWIG_0(void
     (arg1)->setInputLatency(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16208,9 +16335,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputLatency__SWIG_1(void
     (arg1)->setInputLatency(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16226,9 +16354,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getInputLatency(void
     result = (unsigned int)((pj::AudDevManager const *)arg1)->getInputLatency();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16248,9 +16377,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputLatency__SWIG_0(voi
     (arg1)->setOutputLatency(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16266,9 +16396,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputLatency__SWIG_1(voi
     (arg1)->setOutputLatency(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16284,9 +16415,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getOutputLatency(voi
     result = (unsigned int)((pj::AudDevManager const *)arg1)->getOutputLatency();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16306,9 +16438,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputVolume__SWIG_0(void 
     (arg1)->setInputVolume(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16324,9 +16457,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputVolume__SWIG_1(void 
     (arg1)->setInputVolume(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16342,9 +16476,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getInputVolume(void 
     result = (unsigned int)((pj::AudDevManager const *)arg1)->getInputVolume();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16364,9 +16499,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputVolume__SWIG_0(void
     (arg1)->setOutputVolume(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16382,9 +16518,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputVolume__SWIG_1(void
     (arg1)->setOutputVolume(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16400,9 +16537,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getOutputVolume(void
     result = (unsigned int)((pj::AudDevManager const *)arg1)->getOutputVolume();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16420,9 +16558,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getInputSignal(void 
     result = (unsigned int)((pj::AudDevManager const *)arg1)->getInputSignal();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16440,9 +16579,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getOutputSignal(void
     result = (unsigned int)((pj::AudDevManager const *)arg1)->getOutputSignal();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16462,9 +16602,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputRoute__SWIG_0(void *
     (arg1)->setInputRoute(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16480,9 +16621,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setInputRoute__SWIG_1(void *
     (arg1)->setInputRoute(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16498,9 +16640,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_getInputRoute(void * jarg1) {
     result = (pjmedia_aud_dev_route)((pj::AudDevManager const *)arg1)->getInputRoute();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (int)result; 
@@ -16520,9 +16663,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputRoute__SWIG_0(void 
     (arg1)->setOutputRoute(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16538,9 +16682,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setOutputRoute__SWIG_1(void 
     (arg1)->setOutputRoute(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16556,9 +16701,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_AudDevManager_getOutputRoute(void * jarg1) 
     result = (pjmedia_aud_dev_route)((pj::AudDevManager const *)arg1)->getOutputRoute();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (int)result; 
@@ -16578,9 +16724,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setVad__SWIG_0(void * jarg1,
     (arg1)->setVad(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16596,9 +16743,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setVad__SWIG_1(void * jarg1,
     (arg1)->setVad(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16614,9 +16762,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getVad(void * jarg1)
     result = (bool)((pj::AudDevManager const *)arg1)->getVad();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16636,9 +16785,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setCng__SWIG_0(void * jarg1,
     (arg1)->setCng(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16654,9 +16804,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setCng__SWIG_1(void * jarg1,
     (arg1)->setCng(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16672,9 +16823,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getCng(void * jarg1)
     result = (bool)((pj::AudDevManager const *)arg1)->getCng();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -16694,9 +16846,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setPlc__SWIG_0(void * jarg1,
     (arg1)->setPlc(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16712,9 +16865,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AudDevManager_setPlc__SWIG_1(void * jarg1,
     (arg1)->setPlc(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -16730,9 +16884,10 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pj_AudDevManager_getPlc(void * jarg1)
     result = (bool)((pj::AudDevManager const *)arg1)->getPlc();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -17132,9 +17287,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VideoWindow_getInfo(void * jarg1) {
     result = ((pj::VideoWindow const *)arg1)->getInfo();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::VideoWindowInfo((const pj::VideoWindowInfo &)result); 
@@ -17152,9 +17308,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_Show(void * jarg1, unsigned in
     (arg1)->Show(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17174,9 +17331,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_setPos(void * jarg1, void * ja
     (arg1)->setPos((pj::MediaCoordinate const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17196,9 +17354,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_setSize(void * jarg1, void * j
     (arg1)->setSize((pj::MediaSize const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17214,9 +17373,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_rotate(void * jarg1, int jarg2
     (arg1)->rotate(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17236,9 +17396,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoWindow_setWindow(void * jarg1, void *
     (arg1)->setWindow((pj::VideoWindowHandle const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17418,9 +17579,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoPreview_start(void * jarg1, void * ja
     (arg1)->start((pj::VideoPreviewOpParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17434,9 +17596,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VideoPreview_stop(void * jarg1) {
     (arg1)->stop();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17670,9 +17833,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_refreshDevs(void * jarg1) {
     (arg1)->refreshDevs();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17702,9 +17866,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VidDevManager_getDevInfo(void * jarg1, i
     result = ((pj::VidDevManager const *)arg1)->getDevInfo(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::VideoDevInfo((const pj::VideoDevInfo &)result); 
@@ -17722,9 +17887,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VidDevManager_enumDev(void * jarg1) {
     result = (pj::VideoDevInfoVector *) &(arg1)->enumDev();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -17756,9 +17922,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_VidDevManager_lookupDev(void * jarg1, char 
     result = (int)((pj::VidDevManager const *)arg1)->lookupDev((pj::string const &)*arg2,(pj::string const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -17798,9 +17965,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setFormat(void * jarg1, int 
     (arg1)->setFormat(arg2,(pj::MediaFormatVideo const &)*arg3,arg4);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17818,9 +17986,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VidDevManager_getFormat(void * jarg1, in
     result = ((pj::VidDevManager const *)arg1)->getFormat(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::MediaFormatVideo((const pj::MediaFormatVideo &)result); 
@@ -17846,9 +18015,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setInputScale(void * jarg1, 
     (arg1)->setInputScale(arg2,(pj::MediaSize const &)*arg3,arg4);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17866,9 +18036,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_VidDevManager_getInputScale(void * jarg1
     result = ((pj::VidDevManager const *)arg1)->getInputScale(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::MediaSize((const pj::MediaSize &)result); 
@@ -17890,9 +18061,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setOutputWindowFlags(void * 
     (arg1)->setOutputWindowFlags(arg2,arg3,arg4);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17910,9 +18082,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_VidDevManager_getOutputWindowFlags(void * j
     result = (int)(arg1)->getOutputWindowFlags(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -17936,9 +18109,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_switchDev(void * jarg1, int 
     (arg1)->switchDev(arg2,(pj::VideoSwitchParam const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17972,9 +18146,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setCaptureOrient__SWIG_0(voi
     (arg1)->setCaptureOrient(arg2,arg3,arg4);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -17992,9 +18167,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_VidDevManager_setCaptureOrient__SWIG_1(voi
     (arg1)->setCaptureOrient(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -18566,9 +18742,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_BuddyConfig_readObject(void * jarg1, void 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -18588,9 +18765,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_BuddyConfig_writeObject(void * jarg1, void
     ((pj::BuddyConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -18866,9 +19044,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_create(void * jarg1, void * jarg2, v
     (arg1)->create(*arg2,(pj::BuddyConfig const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -18896,9 +19075,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Buddy_getInfo(void * jarg1) {
     result = ((pj::Buddy const *)arg1)->getInfo();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::BuddyInfo((const pj::BuddyInfo &)result); 
@@ -18916,9 +19096,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_subscribePresence(void * jarg1, unsi
     (arg1)->subscribePresence(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -18932,9 +19113,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_updatePresence(void * jarg1) {
     (arg1)->updatePresence();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -18954,9 +19136,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_sendInstantMessage(void * jarg1, voi
     (arg1)->sendInstantMessage((pj::SendInstantMessageParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -18976,9 +19159,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Buddy_sendTypingIndication(void * jarg1, v
     (arg1)->sendTypingIndication((pj::SendTypingIndicationParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19270,9 +19454,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountRegConfig_readObject(void * jarg1, 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19292,9 +19477,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountRegConfig_writeObject(void * jarg1,
     ((pj::AccountRegConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19528,9 +19714,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountSipConfig_readObject(void * jarg1, 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19550,9 +19737,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountSipConfig_writeObject(void * jarg1,
     ((pj::AccountSipConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19700,9 +19888,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountCallConfig_readObject(void * jarg1,
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19722,9 +19911,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountCallConfig_writeObject(void * jarg1
     ((pj::AccountCallConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19877,9 +20067,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountPresConfig_readObject(void * jarg1,
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19899,9 +20090,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountPresConfig_writeObject(void * jarg1
     ((pj::AccountPresConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -19983,9 +20175,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountMwiConfig_readObject(void * jarg1, 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -20005,9 +20198,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountMwiConfig_writeObject(void * jarg1,
     ((pj::AccountMwiConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -20625,9 +20819,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountNatConfig_readObject(void * jarg1, 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -20647,9 +20842,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountNatConfig_writeObject(void * jarg1,
     ((pj::AccountNatConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -20819,9 +21015,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountMediaConfig_readObject(void * jarg1
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -20841,9 +21038,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountMediaConfig_writeObject(void * jarg
     ((pj::AccountMediaConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -21035,9 +21233,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountVideoConfig_readObject(void * jarg1
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -21057,9 +21256,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountVideoConfig_writeObject(void * jarg
     ((pj::AccountVideoConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -21332,9 +21532,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountConfig_readObject(void * jarg1, voi
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -21354,9 +21555,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_AccountConfig_writeObject(void * jarg1, vo
     ((pj::AccountConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -22856,9 +23058,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_create__SWIG_0(void * jarg1, void 
     (arg1)->create((pj::AccountConfig const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -22878,9 +23081,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_create__SWIG_1(void * jarg1, void 
     (arg1)->create((pj::AccountConfig const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -22900,9 +23104,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_modify(void * jarg1, void * jarg2)
     (arg1)->modify((pj::AccountConfig const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -22928,9 +23133,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_setDefault(void * jarg1) {
     (arg1)->setDefault();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -22982,9 +23188,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Account_getInfo(void * jarg1) {
     result = ((pj::Account const *)arg1)->getInfo();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::AccountInfo((const pj::AccountInfo &)result); 
@@ -23002,9 +23209,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_setRegistration(void * jarg1, unsi
     (arg1)->setRegistration(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -23024,9 +23232,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_setOnlineStatus(void * jarg1, void
     (arg1)->setOnlineStatus((pj::PresenceStatus const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -23042,9 +23251,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_setTransport(void * jarg1, int jar
     (arg1)->setTransport(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -23064,9 +23274,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Account_presNotify(void * jarg1, void * ja
     (arg1)->presNotify((pj::PresNotifyParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -23082,9 +23293,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Account_enumBuddies(void * jarg1) {
     result = (pj::BuddyVector *) &((pj::Account const *)arg1)->enumBuddies();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -23110,9 +23322,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Account_findBuddy__SWIG_0(void * jarg1, 
     result = (pj::Buddy *)((pj::Account const *)arg1)->findBuddy(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -23136,9 +23349,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Account_findBuddy__SWIG_1(void * jarg1, 
     result = (pj::Buddy *)((pj::Account const *)arg1)->findBuddy(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -27576,9 +27790,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Call_getInfo(void * jarg1) {
     result = ((pj::Call const *)arg1)->getInfo();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::CallInfo((const pj::CallInfo &)result); 
@@ -27708,9 +27923,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_Call_getRemNatType(void * jarg1) {
     result = (pj_stun_nat_type)(arg1)->getRemNatType();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (int)result; 
@@ -27739,9 +27955,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_makeCall(void * jarg1, char * jarg2, 
     (arg1)->makeCall((pj::string const &)*arg2,(pj::CallOpParam const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27761,9 +27978,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_answer(void * jarg1, void * jarg2) {
     (arg1)->answer((pj::CallOpParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27783,9 +28001,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_hangup(void * jarg1, void * jarg2) {
     (arg1)->hangup((pj::CallOpParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27805,9 +28024,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_setHold(void * jarg1, void * jarg2) {
     (arg1)->setHold((pj::CallOpParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27827,9 +28047,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_reinvite(void * jarg1, void * jarg2) 
     (arg1)->reinvite((pj::CallOpParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27849,9 +28070,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_update(void * jarg1, void * jarg2) {
     (arg1)->update((pj::CallOpParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27878,9 +28100,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_xfer(void * jarg1, char * jarg2, void
     (arg1)->xfer((pj::string const &)*arg2,(pj::CallOpParam const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27906,9 +28129,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_xferReplaces(void * jarg1, void * jar
     (arg1)->xferReplaces((pj::Call const &)*arg2,(pj::CallOpParam const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27924,9 +28148,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_processRedirect(void * jarg1, int jar
     (arg1)->processRedirect(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27947,9 +28172,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_dialDtmf(void * jarg1, char * jarg2) 
     (arg1)->dialDtmf((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27969,9 +28195,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_sendInstantMessage(void * jarg1, void
     (arg1)->sendInstantMessage((pj::SendInstantMessageParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -27991,9 +28218,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_sendTypingIndication(void * jarg1, vo
     (arg1)->sendTypingIndication((pj::SendTypingIndicationParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -28013,9 +28241,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_sendRequest(void * jarg1, void * jarg
     (arg1)->sendRequest((pj::CallSendRequestParam const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -28039,9 +28268,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_Call_dump(void * jarg1, unsigned int jar
     result = (arg1)->dump(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -28093,9 +28323,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Call_vidSetStream(void * jarg1, int jarg2,
     (arg1)->vidSetStream(arg2,(pj::CallVidSetStreamParam const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -28113,9 +28344,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Call_getStreamInfo(void * jarg1, unsigne
     result = ((pj::Call const *)arg1)->getStreamInfo(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::StreamInfo((const pj::StreamInfo &)result); 
@@ -28135,9 +28367,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Call_getStreamStat(void * jarg1, unsigne
     result = ((pj::Call const *)arg1)->getStreamStat(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::StreamStat((const pj::StreamStat &)result); 
@@ -28157,9 +28390,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Call_getMedTransportInfo(void * jarg1, u
     result = ((pj::Call const *)arg1)->getMedTransportInfo(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::MediaTransportInfo((const pj::MediaTransportInfo &)result); 
@@ -29185,9 +29419,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_JsonDocument_loadFile(void * jarg1, char *
     (arg1)->loadFile((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -29208,9 +29443,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_JsonDocument_loadString(void * jarg1, char
     (arg1)->loadString((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -29231,9 +29467,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_JsonDocument_saveFile(void * jarg1, char *
     (arg1)->saveFile((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -29249,9 +29486,10 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pj_JsonDocument_saveString(void * jarg1) {
     result = (arg1)->saveString();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
@@ -29938,9 +30176,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_UaConfig_readObject(void * jarg1, void * j
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -29960,9 +30199,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_UaConfig_writeObject(void * jarg1, void * 
     ((pj::UaConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -30316,9 +30556,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_LogConfig_readObject(void * jarg1, void * 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -30338,9 +30579,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_LogConfig_writeObject(void * jarg1, void *
     ((pj::LogConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -30884,9 +31126,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_MediaConfig_readObject(void * jarg1, void 
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -30906,9 +31149,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_MediaConfig_writeObject(void * jarg1, void
     ((pj::MediaConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31002,9 +31246,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_EpConfig_readObject(void * jarg1, void * j
     (arg1)->readObject((pj::ContainerNode const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31024,9 +31269,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_EpConfig_writeObject(void * jarg1, void * 
     ((pj::EpConfig const *)arg1)->writeObject(*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31076,9 +31322,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_instance() {
     result = (pj::Endpoint *) &pj::Endpoint::instance();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -31124,9 +31371,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libCreate(void * jarg1) {
     (arg1)->libCreate();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31158,9 +31406,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libInit(void * jarg1, void * jarg
     (arg1)->libInit((pj::EpConfig const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31174,9 +31423,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libStart(void * jarg1) {
     (arg1)->libStart();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31197,9 +31447,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libRegisterThread(void * jarg1, c
     (arg1)->libRegisterThread((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31249,9 +31500,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libDestroy__SWIG_0(void * jarg1, 
     (arg1)->libDestroy(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31265,9 +31517,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_libDestroy__SWIG_1(void * jarg1) 
     (arg1)->libDestroy();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31377,9 +31630,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_utilTimerSchedule(void * jarg1,
     result = (pj::Token)(arg1)->utilTimerSchedule(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -31417,9 +31671,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_utilSslGetAvailableCiphers(void
     result = (arg1)->utilSslGetAvailableCiphers();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::IntVector((const pj::IntVector &)result); 
@@ -31435,9 +31690,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natDetectType(void * jarg1) {
     (arg1)->natDetectType();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31453,9 +31709,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_Endpoint_natGetType(void * jarg1) {
     result = (pj_stun_nat_type)(arg1)->natGetType();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (int)result; 
@@ -31479,9 +31736,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natUpdateStunServers(void * jarg1
     (arg1)->natUpdateStunServers((pj::StringVector const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31505,9 +31763,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natCheckStunServers(void * jarg1,
     (arg1)->natCheckStunServers((pj::StringVector const &)*arg2,arg3,arg4);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31525,9 +31784,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natCancelCheckStunServers__SWIG_0
     (arg1)->natCancelCheckStunServers(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31543,9 +31803,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_natCancelCheckStunServers__SWIG_1
     (arg1)->natCancelCheckStunServers(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31569,9 +31830,10 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pj_Endpoint_transportCreate(void * jarg1, int 
     result = (pj::TransportId)(arg1)->transportCreate(arg2,(pj::TransportConfig const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = result; 
@@ -31589,9 +31851,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_transportEnum(void * jarg1) {
     result = (arg1)->transportEnum();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::IntVector((const pj::IntVector &)result); 
@@ -31611,9 +31874,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_transportGetInfo(void * jarg1, 
     result = (arg1)->transportGetInfo(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::TransportInfo((const pj::TransportInfo &)result); 
@@ -31633,9 +31897,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_transportSetEnable(void * jarg1, 
     (arg1)->transportSetEnable(arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31651,9 +31916,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_transportClose(void * jarg1, int 
     (arg1)->transportClose(arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31747,9 +32013,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_mediaEnumPorts(void * jarg1) {
     result = (pj::AudioMediaVector *) &((pj::Endpoint const *)arg1)->mediaEnumPorts();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -31791,9 +32058,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_codecEnum(void * jarg1) {
     result = (pj::CodecInfoVector *) &(arg1)->codecEnum();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -31818,9 +32086,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_codecSetPriority(void * jarg1, ch
     (arg1)->codecSetPriority((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31843,9 +32112,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_codecGetParam(void * jarg1, cha
     result = (pj::CodecParam)((pj::Endpoint const *)arg1)->codecGetParam((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -31870,9 +32140,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_codecSetParam(void * jarg1, char 
     (arg1)->codecSetParam((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31888,9 +32159,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_videoCodecEnum(void * jarg1) {
     result = (pj::CodecInfoVector *) &(arg1)->videoCodecEnum();
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = (void *)result; 
@@ -31915,9 +32187,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_videoCodecSetPriority(void * jarg
     (arg1)->videoCodecSetPriority((pj::string const &)*arg2,arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31940,9 +32213,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pj_Endpoint_getVideoCodecParam(void * jarg1
     result = ((pj::Endpoint const *)arg1)->getVideoCodecParam((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return 0; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return 0;
+    }
   }
   
   jresult = new pj::VidCodecParam((const pj::VidCodecParam &)result); 
@@ -31971,9 +32245,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_setVideoCodecParam(void * jarg1, 
     (arg1)->setVideoCodecParam((pj::string const &)*arg2,(pj::VidCodecParam const &)*arg3);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
@@ -31994,9 +32269,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pj_Endpoint_resetVideoCodecParam(void * jarg1
     (arg1)->resetVideoCodecParam((pj::string const &)*arg2);
   }
   catch(pj::Error &_e) {
-    (void)_e;
-    SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, "C++ pj::Error exception thrown");
-    return ; 
+    {
+      SWIG_CSharpSetPendingExceptionPj((&_e)->status, (&_e)->title.c_str(), (&_e)->reason.c_str(), (&_e)->info(true).c_str());
+      return ;
+    }
   }
   
 }
