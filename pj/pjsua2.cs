@@ -10,9 +10,9 @@
 
 namespace pj {
 
-    public partial class PjRumtimeException : System.ApplicationException {
-      public PjRumtimeException(int status, string title, string reason, string message)
-        : base(message) {
+    public partial class RumtimeException : System.ApplicationException {
+      public RumtimeException(int status, string title, string reason, string message)
+              : base(message) {
         _status = status;
         _title = title;
         _reason = reason;

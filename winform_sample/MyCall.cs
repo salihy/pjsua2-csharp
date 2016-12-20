@@ -32,17 +32,11 @@ namespace winform_sample
             {
                 if (ci.media[(int)i].type == pjmedia_type.PJMEDIA_TYPE_AUDIO)
                 {
-                    try
-                    {
-                        var audMed = AudioMedia.typecastFromMedia(this.getMedia(i));
-                        var mgr = Endpoint.instance().audDevManager();
-                        audMed.startTransmit(mgr.getPlaybackDevMedia());
-                        mgr.getCaptureDevMedia().startTransmit(audMed);
-                    }
-                    catch (pj.PjRumtimeException e)
-                    {
-                        
-                    }
+
+                    var audMed = AudioMedia.typecastFromMedia(this.getMedia(i));
+                    var mgr = Endpoint.instance().audDevManager();
+                    audMed.startTransmit(mgr.getPlaybackDevMedia());
+                    mgr.getCaptureDevMedia().startTransmit(audMed);
                 }
                 else
                 {
