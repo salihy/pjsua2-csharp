@@ -5,75 +5,55 @@ namespace cli_sample
 {
     class Program
     {
-        static Endpoint ep = new Endpoint();
+        static internal Endpoint ep = new Endpoint();
         static MyAccount localAcc = new MyAccount();
-
+        static AccountConfig localAccCfg = new AccountConfig();
+        static EpConfig epCfg = new EpConfig();
         static void Main(string[] args)
         {
             ep.libCreate();
-            try
+            //if (!ep.libIsThreadRegistered())
+            //    ep.libRegisterThread("main");
+            epCfg.uaConfig.userAgent = String.Format(
+                "pjsip-{0} {1}-{2}.{3} dotNET-{4}",
+                Endpoint.instance().libVersion().full,
+                Environment.OSVersion.Platform.ToString(),
+                Environment.OSVersion.Version.Major,
+                Environment.OSVersion.Version.Minor,
+                Environment.Version.ToString()
+            );
+            ep.libInit(epCfg);
+            ep.libStart();
+
+            var trans_cfg = new TransportConfig();
+            trans_cfg.port = 5062;
+            ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, trans_cfg);
+
+            localAccCfg.idUri = string.Format("sip:0.0.0.0:{0}", trans_cfg.port);
+            Console.WriteLine(string.Format("timerMinSESec={0} timerSessExpiresSec={1}", localAccCfg.callConfig.timerMinSESec, localAccCfg.callConfig.timerSessExpiresSec));
+            localAccCfg.callConfig.timerMinSESec = 90;
+            localAccCfg.callConfig.timerSessExpiresSec = 1800;
+
+            //var user_name = "liuxy";
+            //var registrant_host = "sip.dev.yunhuni.com";
+            //var password = "123456";
+            //localAccCfg.idUri = string.Format("sip:{0}@{1}", user_name, registrant_host);
+            //localAccCfg.regConfig.registrarUri = string.Format("sip:{0}", registrant_host);
+            //localAccCfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", "*", user_name, 0, password));
+            localAcc.create(localAccCfg);
+
+
+            while (true)
             {
-
-                var ep_cfg = new EpConfig();
-                ep_cfg.uaConfig.userAgent = String.Format(
-                    "pjsip-{0} {1}-{2}.{3} dotNET-{4}",
-                    Endpoint.instance().libVersion().full,
-                    Environment.OSVersion.Platform.ToString(),
-                    Environment.OSVersion.Version.Major,
-                    Environment.OSVersion.Version.Minor,
-                    Environment.Version.ToString()
-                );
-                ep.libInit(ep_cfg);
-                var trans_cfg = new TransportConfig();
-                trans_cfg.port = 5060;
-                ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, trans_cfg);
-                ep.libStart();
-
-                var acc_cfg = new AccountConfig();
-                acc_cfg.idUri = string.Format("sip:0.0.0.0:{0}", trans_cfg.port);
-                localAcc.create(acc_cfg);
-
-                while (true)
+                var s = Console.ReadLine();
+                if (s.Trim().ToUpper().StartsWith("Q"))
                 {
-                    var s = Console.ReadLine();
-                    if (s.Trim().ToUpper().StartsWith("Q"))
-                    {
-                        break;
-                    }
-                }
-            }
-            catch (RumtimeException e)
-            {
-                Console.WriteLine(String.Format("PJSIP 错误： {0}: {1}", e.status, e.reason));
-            }
-            finally
-            {
-                ep.libDestroy();
-            }
-        }
-
-        class MyAccount : Account
-        {
-            public override void onRegState(OnRegStateParam prm)
-            {
-                if (this.getInfo().regIsActive)
-                {
-                    Console.WriteLine(String.Format("\n\n Registered: {0} {1} \n\n", (uint)prm.code, prm.reason));
-                }
-                else
-                {
-                    Console.WriteLine(String.Format("\n\n Unregistered: {0} {1} \n\n", (uint)prm.code, prm.reason));
+                    break;
                 }
             }
 
-            public override void onIncomingCall(OnIncomingCallParam prm)
-            {
-                base.onIncomingCall(prm);
-                var call = new MyCall(this, prm.callId);
-                var callOpParam = new CallOpParam();
-                callOpParam.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                call.answer(callOpParam);
-            }
+            ep.libDestroy();
+
         }
     }
 }

@@ -17,9 +17,10 @@ namespace cli_sample
         public override void onIncomingCall(OnIncomingCallParam prm)
         {
             base.onIncomingCall(prm);
+            Console.WriteLine("事件：入方向呼叫");
             var call = new MyCall(this, prm.callId);
             var callOpParam = new CallOpParam();
-            callOpParam.statusCode = pjsip_status_code.PJSIP_SC_OK;
+            callOpParam.statusCode = pjsip_status_code.PJSIP_SC_RINGING; // pjsip_status_code.PJSIP_SC_OK;
             call.answer(callOpParam);
         }
     }
