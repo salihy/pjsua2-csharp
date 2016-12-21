@@ -1,4 +1,7 @@
 # pjsua2-csharp
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/313a8b079c0540cc9d66f80a721c12e7)](https://www.codacy.com/app/liushuixingyun/pjsua2-csharp?utm_source=github.com&utm_medium=referral&utm_content=liushuixingyun/pjsua2-csharp&utm_campaign=badger)
+
 该项目旨在为[pjsip]项目提供`CSharp`语言和`dotNET`环境可调用的库。
 它使用了[pjsip]项目官方[swig]接口定义生成的`C/C++`和`CSharp` Wrapper源代码。
 
